@@ -33,22 +33,6 @@ class EventGenerator
   end
 
   def events
-    rest = main_content.css("p").drop(1)
-    rest.map do |event|
-        { description: description(event),
-          link: event_link(event)
-        }
-    end
+    main_content.css("p").drop(1).map { |event| Event.new(event) }
   end
-
-  private
-
-    def description(event)
-      event.css("span").text
-    end
-
-    def event_link(event)
-      event.css("a").present? ? event.css("a").attr("href").value : ""
-    end
-
 end
