@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   def index
-    @doc = EventGenerator.fetch
-    render json: @doc
+    render json: EventGenerator.fetch
   end
 end
