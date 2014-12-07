@@ -1,3 +1,0 @@
-== README
-
-try to create apis for theskint.com. This website is awesome
