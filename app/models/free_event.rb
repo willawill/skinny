@@ -1,0 +1,2 @@
+class FreeEvent < Event
+end

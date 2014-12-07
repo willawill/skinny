@@ -12,7 +12,7 @@ class EventGenerator
     {
       date: title,
       subtitle: subtitle,
-      events: events
+      free_events: free_events.compact
     }
   end
 
@@ -32,7 +32,16 @@ class EventGenerator
     main_content.first.css("u").text
   end
 
+  def free_events
+    main_content.css("p").drop(1).map do |event|
+      e = Event.new(event)
+      e if e.description["free"]
+    end
+  end
+
   def events
-    main_content.css("p").drop(1).map { |event| Event.new(event) }
+    main_content.css("p").drop(1).map do |event|
+      Event.new(event)
+    end
   end
 end
