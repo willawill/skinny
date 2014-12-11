@@ -4,7 +4,7 @@ require 'open-uri'
 class EventGenerator
   def self.fetch
     doc = Nokogiri::HTML(open("http://www.theskint.com"))
-    today = doc.css("article").first
+    today = doc.css("article")[1]
     EventGenerator.new(today)
   end
 
@@ -12,7 +12,8 @@ class EventGenerator
     {
       date: title,
       subtitle: subtitle,
-      free_events: free_events.compact
+      event: events,
+      free_events: free_events
     }
   end
 
@@ -33,10 +34,7 @@ class EventGenerator
   end
 
   def free_events
-    main_content.css("p").drop(1).map do |event|
-      e = Event.new(event)
-      e if e.description["free"]
-    end
+    events.select {|item| item.is_free? }
   end
 
   def events

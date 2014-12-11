@@ -17,4 +17,8 @@ class Event
   def event_link
     @content.css("a").present? ? @content.css("a").attr("href").value : ""
   end
+
+  def is_free?
+    !!description["free"]
+  end
 end
