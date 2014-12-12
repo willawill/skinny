@@ -4,8 +4,10 @@ require 'open-uri'
 class EventGenerator
   def self.fetch
     doc = Nokogiri::HTML(open("http://www.theskint.com"))
-    today = doc.css("article")[1]
-    EventGenerator.new(today)
+    days = doc.css("article")
+    days.map do |day|
+      EventGenerator.new(day)
+    end
   end
 
   def as_json(options={})
