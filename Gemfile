@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
-ruby "2.1.3"
+ruby "2.2.2"
 
 gem 'rails', '4.1.4'
+gem 'rails-api'
 gem 'jquery-rails'
 gem 'pry'
 gem 'jbuilder', '~> 2.0'
